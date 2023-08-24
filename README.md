@@ -28,5 +28,21 @@ Back end application of an e-commerce site.
 
 ## Usage
 
+Video Example: https://youtu.be/MxJge3xn59Q <br>
+
+![screenshot](./Img/screenshot.JPG)
+
 ## Installation
-1. CLI: Install inquirer --> npm i in
+Recommended to download Insomnia <br>
+
+1. CLI: npm i init
+2. CLI: npm i mysql2
+3. CLI: npm i sequelize
+4. CLI: npm i dotenv
+5. CLI: npm i express
+6. Update .env file to include DB_USER and DB_PW
+7. Open CLI and log into mysql using "mysql -u root -p" command
+8. mysql: "SOURCE db/schema.sql" and exit
+9. CLI: node seeds/index.js
+10. CLI: node server.js
+
