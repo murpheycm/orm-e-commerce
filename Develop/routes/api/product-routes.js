@@ -7,9 +7,16 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async(req, res) => {
   try{
     const products = await Product.findAll({
-      inclue: [
-        {model: Category},
-        {model: Tag}
+      attributes: ['id', 'product_name', 'price', 'stock'],
+      include: [
+        {
+          model: Category,
+          attributes: ['category_name']
+        },
+        {
+          model: Tag,
+          attributes: ['tag_name']
+        }
       ]
     });
     res.status(200).json(products);
@@ -23,9 +30,16 @@ router.get('/', async(req, res) => {
 router.get('/:id', async(req, res) => {
   try{
     const products = await Product.findByPk(req.params.id, {
-      inclue: [
-        {model: Category},
-        {model: Tag}
+      attributes: ['id', 'product_name', 'price', 'stock'],
+      include: [
+        {
+          model: Category,
+          attributes: ['category_name']
+        },
+        {
+          model: Tag,
+          attributes: ['tag_name']
+        }
       ]
     });
     if (!products) {
@@ -71,9 +85,8 @@ router.post('/', async(req, res) => {
     });
 });
 
-// update product
+//=================update product==================//
 router.put('/:id', async(req, res) => {
-  // update product data
   await Product.update(req.body, {
     where: {
       id: req.params.id,
