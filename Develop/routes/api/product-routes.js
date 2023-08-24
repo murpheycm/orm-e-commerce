@@ -22,17 +22,17 @@ router.get('/', async(req, res) => {
 //==================get one product==================//
 router.get('/:id', async(req, res) => {
   try{
-    const product = await Product.findByPk(req.params.id, {
+    const products = await Product.findByPk(req.params.id, {
       inclue: [
         {model: Category},
         {model: Tag}
       ]
     });
-    if (!product) {
+    if (!products) {
       res.status(404).json(err);
       return;
     }
-    res.status(200).json(product);
+    res.status(200).json(products);
   }
   catch(err){
     res.status(500).json(err);
@@ -120,14 +120,14 @@ router.put('/:id', async(req, res) => {
 //============delete one product by its `id` value===========//
 router.delete('/:id', async(req, res) => {
   try{
-    const product = await Product.destroy({
+    const products = await Product.destroy({
       where: {id: req.params.id}
     });
-    if(!product) {
+    if(!products) {
       res.status(404).json(err);
       return;
     }
-    res.status(200).json(product);
+    res.status(200).json(products);
   }
   catch(err) {
     res.status(500).json(err);
